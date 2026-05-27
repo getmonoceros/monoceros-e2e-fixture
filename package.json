@@ -1,0 +1,12 @@
+{
+  "name": "monoceros-e2e-fixture",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Test fixtures for the Monoceros workbench — cloned into dev-containers via `monoceros init --with-repo` to exercise repo-clone, Traefik port routing, and end-to-end flows.",
+  "type": "module",
+  "scripts": {
+    "serve-ports": "node ./serve-ports.mjs"
+  },
+  "license": "MIT",
+  "author": "Thorsten Kamann"
+}
