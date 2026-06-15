@@ -1,14 +1,21 @@
 {
   "name": "monoceros-e2e-fixture",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "private": true,
-  "description": "Test fixtures for the Monoceros workbench — cloned into dev-containers via `monoceros init --with-repo` to exercise repo-clone, Traefik port routing, postgres service connectivity, and end-to-end flows.",
+  "description": "Test fixtures for the Monoceros workbench — cloned into dev-containers via `monoceros init --with-repo` to exercise repo-clone, Traefik port routing, per-service connectivity (postgres, pgvector, mongodb, rustfs/S3, mailpit), and end-to-end flows. Each service probe asserts its injected connection env (ADR 0021), so an empty/missing connection env fails the e2e.",
   "type": "module",
   "scripts": {
     "serve-ports": "node ./serve-ports.mjs",
-    "db-client": "node ./db-client.mjs"
+    "db-client": "node ./db-client.mjs",
+    "pgvector-client": "node ./pgvector-client.mjs",
+    "mongo-client": "node ./mongo-client.mjs",
+    "s3-client": "node ./s3-client.mjs",
+    "mail-client": "node ./mail-client.mjs"
   },
   "dependencies": {
+    "@aws-sdk/client-s3": "^3.1068.0",
+    "mongodb": "^7.3.0",
+    "nodemailer": "^9.0.0",
     "pg": "^8.13.1"
   },
   "license": "MIT",

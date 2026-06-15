@@ -11,17 +11,21 @@
 //     with `FAIL: <reason>` on any failure.
 //
 // Connection target:
-//   - `DATABASE_URL` env var if set.
-//   - Otherwise the Monoceros service-catalog default for the
-//     postgres service: monoceros / monoceros @ postgres:5432 /
-//     monoceros (see packages/cli/src/create/catalog.ts in the
-//     workbench repo).
+//   - `POSTGRES_URL` env var, which Monoceros injects into the workspace
+//     for a curated `postgres` service (ADR 0021). We deliberately
+//     ASSERT it is set instead of falling back to a hardcoded string — a
+//     missing/empty connection env is exactly the regression this probe
+//     must catch (the old `DATABASE_URL ?? hardcoded` form masked it).
 
 import pg from 'pg';
 
-const url =
-  process.env.DATABASE_URL ??
-  'postgresql://monoceros:monoceros@postgres:5432/monoceros';
+const url = process.env.POSTGRES_URL;
+if (!url) {
+  console.error(
+    'FAIL: POSTGRES_URL is not set — the workspace did not receive the postgres connection env.',
+  );
+  process.exit(1);
+}
 
 const client = new pg.Client({ connectionString: url });
 
