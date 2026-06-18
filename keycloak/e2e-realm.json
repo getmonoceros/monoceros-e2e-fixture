@@ -1,0 +1,16 @@
+{
+  "realm": "monoceros-e2e",
+  "enabled": true,
+  "clients": [
+    {
+      "clientId": "e2e-probe",
+      "enabled": true,
+      "publicClient": false,
+      "secret": "e2e-secret",
+      "clientAuthenticatorType": "client-secret",
+      "serviceAccountsEnabled": true,
+      "standardFlowEnabled": false,
+      "directAccessGrantsEnabled": false
+    }
+  ]
+}

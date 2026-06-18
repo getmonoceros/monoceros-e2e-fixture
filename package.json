@@ -2,7 +2,7 @@
   "name": "monoceros-e2e-fixture",
   "version": "0.5.0",
   "private": true,
-  "description": "Test fixtures for the Monoceros workbench — cloned into dev-containers via `monoceros init --with-repo` to exercise repo-clone, Traefik port routing, per-service connectivity (postgres, pgvector, mongodb, rustfs/S3, mailpit), and end-to-end flows. Each service probe asserts its injected connection env (ADR 0021), so an empty/missing connection env fails the e2e.",
+  "description": "Test fixtures for the Monoceros workbench — cloned into dev-containers via `monoceros init --with-repo` to exercise repo-clone, Traefik port routing, per-service connectivity (postgres, pgvector, mongodb, rustfs/S3, mailpit, keycloak), and end-to-end flows. Each service probe asserts its injected connection env (ADR 0021), so an empty/missing connection env fails the e2e. The keycloak fixture also ships a realm export (keycloak/e2e-realm.json) mounted for import (ADR 0025).",
   "type": "module",
   "scripts": {
     "serve-ports": "node ./serve-ports.mjs",
@@ -13,7 +13,8 @@
     "mail-client": "node ./mail-client.mjs",
     "mysql-client": "node ./mysql-client.mjs",
     "redis-client": "node ./redis-client.mjs",
-    "two-db-client": "node ./two-db-client.mjs"
+    "two-db-client": "node ./two-db-client.mjs",
+    "keycloak-client": "node ./keycloak-client.mjs"
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.1068.0",
