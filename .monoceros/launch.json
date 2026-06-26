@@ -1,0 +1,22 @@
+{
+  "version": 1,
+  "configurations": [
+    {
+      "name": "frontend",
+      "command": "node serve-ports.mjs 5173:frontend",
+      "port": 5173,
+      "default": true
+    },
+    {
+      "name": "api",
+      "command": "node serve-ports.mjs 3001:api",
+      "port": 3001,
+      "default": true
+    },
+    {
+      "name": "storybook",
+      "command": "node serve-ports.mjs 6006:storybook",
+      "port": 6006
+    }
+  ]
+}
